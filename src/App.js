@@ -3,6 +3,7 @@ import Cart from './components/Cart/Cart';
 
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
+import CartProvider from './store/CartProvider';
 
 function App() {
   const [shown, setShown] = useState(false);
@@ -14,13 +15,15 @@ function App() {
     setShown(false);
   };
   return (
-    <Fragment>
-      {shown && <Cart onClose={hide} />}
-      <Header onShow={show} />
-      <main>
-        <Meals />
-      </main>
-    </Fragment>
+    <CartProvider>
+      <Fragment>
+        {shown && <Cart onClose={hide} />}
+        <Header onShow={show} />
+        <main>
+          <Meals />
+        </main>
+      </Fragment>
+    </CartProvider>
   );
 }
 
